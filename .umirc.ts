@@ -8,7 +8,10 @@ export default defineConfig({
     {
       path: '/',
       component: '@/pages/Layouts/index',
-      routes: [{ path: '/', component: '@/pages/index' }],
+      routes: [
+        { path: '/', component: '@/pages/index' },
+        { path: '/BasicTodo', component: '@/pages/BasicTodo/index' },
+      ],
     },
   ],
 });

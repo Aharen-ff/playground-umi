@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Layout, Menu } from 'antd';
+import { Link } from 'umi';
 
 export default (): ReactElement => {
   return (
@@ -11,9 +12,12 @@ export default (): ReactElement => {
           defaultSelectedKeys={['1']}
           style={{ lineHeight: '64px' }}
         >
-          <Menu.Item key="1">页面一</Menu.Item>
-          <Menu.Item key="2">页面二</Menu.Item>
-          <Menu.Item key="3">页面三</Menu.Item>
+          <Menu.Item key="1">
+            <Link to="/">首页</Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Link to="BasicTodo">待办事项</Link>
+          </Menu.Item>
         </Menu>
       </div>
     </Layout.Header>
