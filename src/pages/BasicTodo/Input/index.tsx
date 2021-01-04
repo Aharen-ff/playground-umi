@@ -8,8 +8,19 @@ interface IProps {
 }
 
 const TodoInput: FC<IProps> = ({ addTodo, todoList }): ReactElement => {
+  const [inputValue, setValue] = useState('');
   const placeholder = 'Enter your Todo item';
   const inputRef = useRef<Input>(null);
+
+  const handleChange = (e: React.ChangeEvent): void => {
+    /**
+     * @TODO
+     * I use state to reset Input's value,
+     * but here is one small problem need to be fixed.
+     */
+    const value: string = e.currentTarget.value;
+    setValue(value);
+  };
 
   const addItem = (): void => {
     const value: string = inputRef.current!.state.value.trim();
@@ -27,18 +38,18 @@ const TodoInput: FC<IProps> = ({ addTodo, todoList }): ReactElement => {
         completed: false,
       });
 
-      /**
-       * @TODO
-       * After adding, we need reset input,
-       * but I'm still trying to figure out
-       * how Antd Input works.
-       */
+      setValue('');
     }
   };
 
   return (
     <div style={{ display: 'flex' }}>
-      <Input placeholder={placeholder} ref={inputRef} />
+      <Input
+        placeholder={placeholder}
+        onChange={handleChange}
+        value={inputValue}
+        ref={inputRef}
+      />
       <Button type="primary" onClick={addItem}>
         添加
       </Button>
