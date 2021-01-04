@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useRef } from 'react';
+import React, { FC, ReactElement, useRef, useState } from 'react';
 import { Input, Button, message } from 'antd';
 import { ITodo } from '../typings';
 
@@ -12,8 +12,8 @@ const TodoInput: FC<IProps> = ({ addTodo, todoList }): ReactElement => {
   const inputRef = useRef<Input>(null);
 
   const addItem = (): void => {
-    console.log('inputRef', inputRef);
-    const value: string = inputRef.current!.input.value.trim();
+    const value: string = inputRef.current!.state.value.trim();
+
     if (value.length) {
       const isExist = todoList.find(todo => todo.content === value);
       if (isExist) {
@@ -26,6 +26,13 @@ const TodoInput: FC<IProps> = ({ addTodo, todoList }): ReactElement => {
         content: value,
         completed: false,
       });
+
+      /**
+       * @TODO
+       * After adding, we need reset input,
+       * but I'm still trying to figure out
+       * how Antd Input works.
+       */
     }
   };
 

@@ -25,7 +25,7 @@ const BasicTodo: FC = (): ReactElement => {
     <div>
       <div>Simple Todo</div>
       <Input addTodo={handleAdd} todoList={list} />
-      <List />
+      <List todoList={list} />
     </div>
   );
 };
