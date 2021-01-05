@@ -8,17 +8,17 @@ interface IProps {
 }
 
 const TodoInput: FC<IProps> = ({ addTodo, todoList }): ReactElement => {
-  const [inputValue, setValue] = useState('');
+  const [inputValue, setValue] = useState<string>('');
   const placeholder = 'Enter your Todo item';
   const inputRef = useRef<Input>(null);
 
   const handleChange = (e: React.ChangeEvent): void => {
     /**
-     * @TODO
-     * I use state to reset Input's value,
-     * but here is one small problem need to be fixed.
+     * I've fixed this problem. I think it's because
+     * TypeScript cannot recognize what `target` is,
+     * which need a explicit declaration.
      */
-    const value: string = e.currentTarget.value;
+    const value: string = (e.target as HTMLInputElement).value;
     setValue(value);
   };
 
