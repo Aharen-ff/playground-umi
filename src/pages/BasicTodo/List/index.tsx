@@ -1,23 +1,32 @@
 import React, { FC, ReactElement } from 'react';
-import { ITodo } from '../typings';
+import TodoItem from '../Item';
 
-interface IProps {
-  todoList: ITodo[];
+interface props {
+  todoList: todo[];
+  changeTodo: (id: number) => void;
+  deleteTodo: (id: number) => void;
 }
 
-const TodoList: FC<IProps> = ({ todoList }): ReactElement => {
+const TodoList: FC<props> = ({
+  todoList,
+  changeTodo,
+  deleteTodo,
+}): ReactElement => {
   return (
     <div>
       <div>TodoList</div>
       <ul>
         {todoList &&
-          todoList.map((item: ITodo) => {
-            /**
-             * @TODO
-             * We need implement a list item component
-             * to display todo content and control it.
-             */
-            return <li key={item.id}>{item.content}</li>;
+          todoList.map((item: todo) => {
+            return (
+              <li key={item.id}>
+                <TodoItem
+                  changeTodo={changeTodo}
+                  deleteTodo={deleteTodo}
+                  item={item}
+                />
+              </li>
+            );
           })}
       </ul>
     </div>

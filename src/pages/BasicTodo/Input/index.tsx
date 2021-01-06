@@ -1,13 +1,12 @@
 import React, { FC, ReactElement, useRef, useState } from 'react';
 import { Input, Button, message } from 'antd';
-import { ITodo } from '../typings';
 
-interface IProps {
-  addTodo: (todo: ITodo) => void;
-  todoList: ITodo[];
+interface props {
+  addTodo: (todo: todo) => void;
+  todoList: todo[];
 }
 
-const TodoInput: FC<IProps> = ({ addTodo, todoList }): ReactElement => {
+const TodoInput: FC<props> = ({ addTodo, todoList }): ReactElement => {
   const [inputValue, setValue] = useState<string>('');
   const placeholder = 'Enter your Todo item';
   const inputRef = useRef<Input>(null);

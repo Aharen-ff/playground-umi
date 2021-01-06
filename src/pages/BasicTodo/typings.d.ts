@@ -1,4 +1,4 @@
-export interface ITodo {
+declare interface todo {
   id: number;
   content: string;
   completed: boolean;
