@@ -1,4 +1,4 @@
-declare interface todo {
+declare interface Todo {
   id: number;
   content: string;
   completed: boolean;

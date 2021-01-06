@@ -2,13 +2,13 @@ import React, { FC, ReactElement } from 'react';
 import TodoItem from '../Item';
 
 interface props {
-  todoList: todo[];
+  list: Todo[];
   changeTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
 }
 
 const TodoList: FC<props> = ({
-  todoList,
+  list,
   changeTodo,
   deleteTodo,
 }): ReactElement => {
@@ -16,8 +16,8 @@ const TodoList: FC<props> = ({
     <div>
       <div>TodoList</div>
       <ul>
-        {todoList &&
-          todoList.map((item: todo) => {
+        {list &&
+          list.map((item: Todo) => {
             return (
               <li key={item.id}>
                 <TodoItem

@@ -13,29 +13,37 @@ const BasicTodo: FC = (): ReactElement => {
    * We hold state at top level component,
    * and pass it down to each child component.
    */
-  const [list, setList] = useState<todo[]>([]);
+  const [list, setList] = useState<Todo[]>([]);
 
   useEffect(() => {
     console.log('list changed', list);
   }, [list]);
 
-  const handleAdd = useCallback((todo: todo) => {
-    setList(list => [...list, todo]);
+  /**
+   * @func handleTodoItemAdd
+   * @param {todo} todo
+   */
+  const handleAdd = useCallback((todo: Todo) => {
+    setList((list: Todo[]) => [...list, todo]);
   }, []);
 
   /**
-   * @todo
+   * @func handleTodoItemDelete
+   * @desc delete todo-item by id
+   * @param {number} id
    */
   const handleDelete = useCallback((id: number) => {
-    setList(list => list.filter(item => item.id !== id));
+    setList((list: Todo[]) => list.filter((item: Todo) => item.id !== id));
   }, []);
 
   /**
-   * @todo
+   * @func handleTodoItemStateChange
+   * @desc change todo-item's complete state by id
+   * @param {number} id
    */
   const handleItemStateChange = useCallback((id: number) => {
-    setList(list =>
-      list.map(item =>
+    setList((list: Todo[]) =>
+      list.map((item: Todo) =>
         item.id === id
           ? {
               ...item,
@@ -49,11 +57,11 @@ const BasicTodo: FC = (): ReactElement => {
   return (
     <div>
       <div>Simple Todo</div>
-      <Input addTodo={handleAdd} todoList={list} />
+      <Input addTodo={handleAdd} list={list} />
       <List
         changeTodo={handleItemStateChange}
         deleteTodo={handleDelete}
-        todoList={list}
+        list={list}
       />
     </div>
   );

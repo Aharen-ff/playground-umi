@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { Checkbox, Button } from 'antd';
 
 interface props {
-  item: todo;
+  item: Todo;
   changeTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
 }

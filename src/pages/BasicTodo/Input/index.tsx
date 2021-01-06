@@ -2,14 +2,13 @@ import React, { FC, ReactElement, useRef, useState } from 'react';
 import { Input, Button, message } from 'antd';
 
 interface props {
-  addTodo: (todo: todo) => void;
-  todoList: todo[];
+  addTodo: (todo: Todo) => void;
+  list: Todo[];
 }
 
-const TodoInput: FC<props> = ({ addTodo, todoList }): ReactElement => {
+const TodoInput: FC<props> = ({ addTodo, list }): ReactElement => {
   const [inputValue, setValue] = useState<string>('');
   const placeholder = 'Enter your Todo item';
-  const inputRef = useRef<Input>(null);
 
   /**
    * @func handleInputValueChange
@@ -18,13 +17,18 @@ const TodoInput: FC<props> = ({ addTodo, todoList }): ReactElement => {
    * and update state manually.
    * @param {React.ChangeEvent} e
    */
-  const handleChange = (e: React.ChangeEvent): void => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     /**
      * I've fixed this problem. I think it's because
      * TypeScript cannot recognize what `target` is,
-     * which need a explicit declaration `as HTMLInputElement`.
+     * which need an explicit declaration `as HTMLInputElement`.
      */
-    const value: string = (e.target as HTMLInputElement).value;
+    // const value: string = (e.target as HTMLInputElement).value;
+    /**
+     * updated:
+     * We can declare `HTMLInputElement` when the event is being passed.
+     */
+    const value: string = e.target.value;
     setValue(value);
   };
 
@@ -32,7 +36,7 @@ const TodoInput: FC<props> = ({ addTodo, todoList }): ReactElement => {
     const value: string = inputValue;
 
     if (value.length) {
-      const isExist = todoList.find(todo => todo.content === value);
+      const isExist = list.find((todo: Todo) => todo.content === value);
       if (isExist) {
         message.error('This item is existed');
         return;
@@ -54,7 +58,6 @@ const TodoInput: FC<props> = ({ addTodo, todoList }): ReactElement => {
         placeholder={placeholder}
         onChange={handleChange}
         value={inputValue}
-        ref={inputRef}
       />
       <Button type="primary" onClick={addItem}>
         添加
