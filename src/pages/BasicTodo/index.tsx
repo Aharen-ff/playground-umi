@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import Input from './Input';
 import List from './List';
+import { Todo } from './typings';
 
 const BasicTodo: FC = (): ReactElement => {
   /**
@@ -44,12 +45,7 @@ const BasicTodo: FC = (): ReactElement => {
   const handleItemStateChange = useCallback((id: number) => {
     setList((list: Todo[]) =>
       list.map((item: Todo) =>
-        item.id === id
-          ? {
-              ...item,
-              completed: !item.completed,
-            }
-          : item,
+        item.id === id ? { ...item, completed: !item.completed } : item,
       ),
     );
   }, []);

@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import TodoItem from '../Item';
+import { Todo } from '../typings';
 
 interface props {
   list: Todo[];

@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, useRef, useState } from 'react';
 import { Input, Button, message } from 'antd';
+import { Todo } from '../typings';
 
 interface props {
   addTodo: (todo: Todo) => void;

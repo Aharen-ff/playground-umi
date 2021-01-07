@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { Checkbox, Button } from 'antd';
+import { Todo } from '../typings';
 
 interface props {
   item: Todo;
