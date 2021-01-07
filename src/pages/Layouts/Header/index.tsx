@@ -18,6 +18,9 @@ export default (): ReactElement => {
           <Menu.Item key="2">
             <Link to="BasicTodo">待办事项</Link>
           </Menu.Item>
+          <Menu.Item key="3">
+            <Link to="ContactManagement">联系人管理</Link>
+          </Menu.Item>
         </Menu>
       </div>
     </Layout.Header>

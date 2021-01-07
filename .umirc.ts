@@ -11,6 +11,7 @@ export default defineConfig({
       routes: [
         { path: '/', component: '@/pages/index' },
         { path: '/BasicTodo', component: '@/pages/BasicTodo/index' },
+        { path: '/ContactManagement', component: '@/pages/ContactMng/index' },
       ],
     },
   ],
